@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\Post;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,6 +16,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->call(function(){
+            Post::create(['title'=> 'Hello'.date('i'), 'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate aspernatur obcaecati magnam fugiat incidunt ducimus. Perspiciatis tempora accusamus nemo voluptatibus cum dolores inventore autem dicta, corrupti dignissimos optio hic sit.' ]);
+        })->everyMinute();
         // $schedule->command('inspire')->hourly();
     }
 
